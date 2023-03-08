@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState} from 'react';
 import WordList from './wordList.jsx';
+import AddWord from './addWord.jsx';
+import Search from './search.jsx';
 
 const App = () => {
 
@@ -9,7 +11,17 @@ const App = () => {
   return (
     <div>
       Message from App.js
-      <WordList words={words}/>
+      <div>
+        <>
+          <AddWord />
+        </>
+        <>
+          <Search />
+        </>
+      </div>
+      <div>
+        <WordList words={words}/>
+      </div>
     </div>
   )
 }
