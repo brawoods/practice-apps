@@ -3,7 +3,11 @@ import React from 'react';
 const Search = () => {
 
   return (
-    <div>Search bar goes here</div>
+    <div>
+      <input type='search'></input>
+      <input type='button' value='Search'></input>
+    </div>
+
   )
 }
 

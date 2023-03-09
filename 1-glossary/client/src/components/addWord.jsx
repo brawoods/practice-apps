@@ -1,9 +1,23 @@
-import React from 'react';
+import { useState } from 'react';
 
-const AddWord = () => {
+const AddWord = ({postWord}) => {
+
+  const [text, setText] = useState('');
+
+  const inputText = (e) => {
+    setText(e.target.value);
+  }
+
+  const post = () => {
+    console.log('clicked it!')
+    postWord(text);
+  }
 
   return (
-    <div>Add a new word here</div>
+    <div>
+      <input type='search' value={text} onChange={inputText} ></input>
+      <input type='button' value='Add Word' onClick={post}></input>
+    </div>
   )
 }
 
