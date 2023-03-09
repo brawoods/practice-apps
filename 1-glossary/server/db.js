@@ -6,7 +6,8 @@ const path = require("path");
 // 3. Export the models
 // 4. Import the models into any modules that need them
 
-mongoose.connect('mongodb://localhost/glossary')
+// TODO change to path.join with dirname
+mongoose.connect(`mongodb://localhost/${process.env.DB_NAME}`)
 .catch(err => console.log(err));
 
 const glossarySchema = new mongoose.Schema({
