@@ -27,6 +27,13 @@ const App = () => {
   // }
   // console.log('get all words: ', genAllWords());
 
+  const search = (text) => {
+    // axios get given text
+    // text through to get controller
+    // adjust search criteria as needed
+    // invoke findOne from model
+  }
+
   const postWord = (text, def) => {
     // test post
 
@@ -41,9 +48,6 @@ const App = () => {
     .catch((err) => {
       console.log(err);
     })
-
-    // perform an axios post
-    // .then perform a get
   }
 
   return (
@@ -54,7 +58,7 @@ const App = () => {
           <AddWord postWord={postWord}/>
         </>
         <>
-          <Search />
+          <Search searchWord={search}/>
         </>
       </div>
       <div>

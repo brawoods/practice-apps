@@ -1,12 +1,20 @@
-import React from 'react';
+import {useState} from 'react';
 
-const Search = () => {
+const Search = ({searchWord}) => {
+  const[searchText, setSearchText] = useState('');
 
+  const inputText = (e) => {
+    setSearchText(e.target.value);
+  }
+
+  const search = () => {
+    searchWord(searchText);
+  }
 
   return (
     <div>
-      <input type='search'></input>
-      <input type='button' value='Search'></input>
+      <input type='search' value={searchText} onChange={inputText}></input>
+      <input type='button' value='Search' onClick={search}></input>
     </div>
 
   )
