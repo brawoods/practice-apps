@@ -21,7 +21,13 @@ const glossaryWord = mongoose.model('glossaryWord', glossarySchema);
 
 // save a new word to the database
 const getAll = () => {
-  glossaryWord.find();
+  return glossaryWord.find()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 }
 
 const save = (words) => {
@@ -34,5 +40,6 @@ const remove = () => {
 
 }
 
+module.exports.getAll = getAll;
 module.exports.save = save;
 module.exports.remove = remove;

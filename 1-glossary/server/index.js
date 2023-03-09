@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const { save, remove } = require('./db.js');
+const { getAll, save, remove } = require('./db.js');
 const convertToArray = require('../helpers/convertToArray.js');
 
 const app = express();
@@ -12,7 +12,13 @@ app.use('/glossary', express.json());
 
 
 app.get('/glossary', (req, res) => {
-  res.status(200).send('Hello world');
+  // let words = getAll();
+  // console.log(words);
+
+
+  res.status(200).send(words);
+
+
 });
 
 app.post('/glossary', (req, res) => {

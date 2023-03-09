@@ -9,15 +9,23 @@ import Search from './search.jsx';
 const App = () => {
   // test data - replace with get from database
   const [words, setWords] = useState(
+    [{name:'test'}, {name:'text'}, {name:'goes'}, {name:'here'}]
+    // use test data until get call is ready
     // use axios.get to return a promise of the current database and set as default words array
-    axios.get('/glossary')
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  );
+    );
+
+  // for useState on initialization
+  // const genAllWords = () => {
+  //   axios.get('/glossary')
+  //   .then((res) => {
+  //     console.log(res.data);
+  //     setWords(res.data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
+  // console.log('get all words: ', genAllWords());
 
   const postWord = (text, def) => {
     // test post
