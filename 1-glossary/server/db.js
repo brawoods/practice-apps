@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const path = require("path");
 
@@ -7,28 +8,31 @@ const path = require("path");
 // 4. Import the models into any modules that need them
 
 // TODO change to path.join with dirname
-mongoose.connect(`mongodb://localhost/${process.env.DB_NAME}`)
+mongoose.connect('mongodb://localhost/glossary')
 .catch(err => console.log(err));
 
 const glossarySchema = new mongoose.Schema({
-  id:
-    {type: Number,
+  name: {type: String,
     unique: true},
-  name: String,
   def: String
 })
 
 const glossaryWord = mongoose.model('glossaryWord', glossarySchema);
 
 // save a new word to the database
-const save = () => {
+const getAll = () => {
+  glossaryWord.find();
+}
 
+const save = (words) => {
+  // console.log(words);
+  glossaryWord.create(words);
 }
 
 // delete a word from the database
-const delete = () => {
+const remove = () => {
 
 }
 
 module.exports.save = save;
-module.exports.delete = delete;
+module.exports.remove = remove;

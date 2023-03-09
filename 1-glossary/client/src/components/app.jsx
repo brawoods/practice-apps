@@ -7,16 +7,16 @@ import AddWord from './addWord.jsx';
 import Search from './search.jsx';
 
 const App = () => {
+  // test data
   const [words, setWords] = useState([{name:'test'}, {name:'text'}, {name:'goes'}, {name:'here'}]);
 
-  const postWord = (text) => {
+  const postWord = (text, def) => {
     // test post
 
     // TODO change data before submitting
     axios.post('/glossary', {
-        id: 1,
         name: text,
-        def: 'definition of the word'
+        def: def
     })
     .then((res) => {
       console.log('I got a response! ', res);
@@ -24,25 +24,14 @@ const App = () => {
     .catch((err) => {
       console.log(err);
     })
-    console.log(text, 'posted');
+
     // perform an axios post
     // .then perform a get
-
-    // let data = '';
-    // let config = {
-    //   method: 'post',
-    //   maxBodyLength: Infinity,
-    //   url: '/glossary',
-    //   headers: {},
-    //   data: data
-    // }
-
-    // axios(config)
   }
 
   return (
     <div>
-      Message from App.js
+      <h1>Glossary</h1>
       <div>
         <>
           <AddWord postWord={postWord}/>

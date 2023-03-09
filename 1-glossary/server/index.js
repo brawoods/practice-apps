@@ -1,21 +1,27 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const { save, remove } = require('./db.js');
+const convertToArray = require('../helpers/convertToArray.js');
 
 const app = express();
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use('/glossary', express.json());
+
 
 app.get('/glossary', (req, res) => {
-  console.log('di ya get it?');
   res.status(200).send('Hello world');
-})
+});
 
 app.post('/glossary', (req, res) => {
-  console.log('app.post touched');
-  res.status(201).send('thanks for posting');
-})
+  convertToArray(req.body, (data) => {
+    // save to db
+    save(data);
+    res.status(201).send('thanks for posting');
+  })
+});
 
 app.put('/glossary', (req, res) => {
   console.log('app.put touched');

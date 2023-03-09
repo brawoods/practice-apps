@@ -2,22 +2,33 @@ import { useState } from 'react';
 
 const AddWord = ({postWord}) => {
 
-  const [text, setText] = useState('');
+  const [wordName, setWordName] = useState('');
+  const [def, setDef] = useState('');
 
-  const inputText = (e) => {
-    setText(e.target.value);
+  const inputWord = (e) => {
+    setWordName(e.target.value);
+  }
+
+  const inputDef = (e) => {
+    setDef(e.target.value);
   }
 
   const post = () => {
     console.log('clicked it!')
-    postWord(text);
+    postWord(wordName, def);
   }
 
   return (
     <div>
-      <input type='search' value={text} onChange={inputText} ></input>
-      <input type='button' value='Add Word' onClick={post}></input>
+      <div>Add New Word:
+        <input type='search' value={wordName} onChange={inputWord} ></input>
+        <input type='button' value='Add Word' onClick={post}></input>
+      </div>
+      <div> Add Definition:
+        <input type='search' value={def} onChange={inputDef} ></input>
+      </div>
     </div>
+
   )
 }
 
