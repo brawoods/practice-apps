@@ -7,8 +7,17 @@ import AddWord from './addWord.jsx';
 import Search from './search.jsx';
 
 const App = () => {
-  // test data
-  const [words, setWords] = useState([{name:'test'}, {name:'text'}, {name:'goes'}, {name:'here'}]);
+  // test data - replace with get from database
+  const [words, setWords] = useState(
+    // use axios.get to return a promise of the current database and set as default words array
+    axios.get('/glossary')
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  );
 
   const postWord = (text, def) => {
     // test post
