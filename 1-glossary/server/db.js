@@ -44,9 +44,11 @@ const save = (words) => {
   glossaryWord.create(words);
 }
 
-// delete a word from the database
-const remove = () => {
-
+const remove = (word, cb) => {
+  glossaryWord.deleteOne(word)
+  .then((deleteCount) => {
+    cb(deleteCount);
+  })
 }
 
 module.exports.getOne = getOne;

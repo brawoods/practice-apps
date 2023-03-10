@@ -12,31 +12,13 @@ app.use('/glossary', express.json());
 
 
 app.get('/glossary', (req, res) => {
-  // let words = getAll();
-  // console.log(words);
   if (req.body.length > 0) {
     console.log('req body: ', req.body);
   } else {
     glossary.getAll((data) => {
-      // console.log('in controller: ', data);
       res.status(200).send(data);
     })
   }
-
-
-  // .then((res) => {
-
-  // })
-  // if (req.body === undefined) {
-  //   console.log('get all');
-  //   res.status(200).send(getAll);
-  // } else {
-
-  //   res.status(200).send(getOne);
-  // }
-
-
-
 });
 
 app.post('/glossary', (req, res) => {
@@ -54,7 +36,9 @@ app.put('/glossary', (req, res) => {
 
 app.delete('/glossary', (req, res) => {
   console.log('app.delete touched');
-  res.status(200).send('target eliminated');
+  glossary.remove(req.body, (deleteCount) => {
+    res.status(200).send(deleteCount);
+  });
 })
 
 
