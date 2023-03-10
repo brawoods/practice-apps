@@ -53,8 +53,23 @@ const App = () => {
 
   // pass through WordList to Word
   const editWord = (word, editName, editDef) => {
-     console.log(word, editName, editDef);
-    // open pop up table or modify in place
+    let update = {
+      name: editName,
+      def: editDef
+    }
+    axios.put('/glossary', {
+      word: word,
+      update: update
+    })
+    .then(() => {
+      return axios.get('/glossary');
+    })
+    .then((res) => {
+      setWords(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     // take new data and enter PUT request
     // PUT request
     // GET request to refresh list

@@ -62,3 +62,4 @@ module.exports.getOne = getOne;
 module.exports.getAll = getAll;
 module.exports.save = save;
 module.exports.remove = remove;
+module.exports.edit = edit;

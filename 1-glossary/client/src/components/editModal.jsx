@@ -20,9 +20,9 @@ const EditModal = ({submitEdit, showEditModal}) => {
   return (
     <div>
     <>
-      Edit Word
-    </>
+    </>Word
       <input type='text' value={editName} onChange={changeName}></input>
+      Definition
       <input type='text' value={editDef} onChange={changeDef}></input>
       <input type='button' value='Submit' onClick={submit}></input>
     </div>

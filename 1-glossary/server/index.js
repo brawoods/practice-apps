@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const glossary = require('./db.js');
 const convertToArray = require('../helpers/convertToArray.js');
+const replaceBlanks = require('../helpers/replaceBlanks.js');
 
 const app = express();
 
@@ -30,15 +31,15 @@ app.post('/glossary', (req, res) => {
 });
 
 app.put('/glossary', (req, res) => {
-  console.log('app.put touched');
-  // invoke model to edit
-  glossary.edit(/*word, update, */(data) => {
-    res.status(200).send(data);
+  replaceBlanks(req.body.word, req.body.update, (word, update) => {
+    glossary.edit(word, update, (data) => {
+      res.status(200).send(data);
+    })
   })
+
 })
 
 app.delete('/glossary', (req, res) => {
-  console.log('app.delete touched');
   glossary.remove(req.body, (deleteCount) => {
     res.status(200).send(deleteCount);
   });
