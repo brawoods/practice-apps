@@ -20,10 +20,21 @@ const glossarySchema = new mongoose.Schema({
 const glossaryWord = mongoose.model('glossaryWord', glossarySchema);
 
 // save a new word to the database
-const getAll = () => {
-  return glossaryWord.find()
+const getOne = (wordName) => {
+  return glossaryWord.findOne(wordName)
+  .then((res) => {
+    console.log('res', res);
+  })
+  .catch((err) => {
+    console.log('err', err);
+  });
+}
+
+const getAll = (cb) => {
+  glossaryWord.find()
   .then((data) => {
-    console.log(data);
+    // console.log('log data from model ', data);
+    cb(data);
   })
   .catch((err) => {
     console.log(err);
@@ -40,6 +51,7 @@ const remove = () => {
 
 }
 
+module.exports.getOne = getOne;
 module.exports.getAll = getAll;
 module.exports.save = save;
 module.exports.remove = remove;

@@ -1,34 +1,41 @@
 const axios = require('axios');
 import React from 'react';
 // import axios from 'axios';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import WordList from './wordList.jsx';
 import AddWord from './addWord.jsx';
 import Search from './search.jsx';
 
 const App = () => {
-  // test data - replace with get from database
-  const [words, setWords] = useState(
-    [{name:'test'}, {name:'text'}, {name:'goes'}, {name:'here'}]
-    // use test data until get call is ready
-    // use axios.get to return a promise of the current database and set as default words array
-    );
+  // test data - [{name:'test'}, {name:'text'}, {name:'goes'}, {name:'here'}]
+  const [words, setWords] = useState([]);
 
   // for useState on initialization
-  // const genAllWords = () => {
-  //   axios.get('/glossary')
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     setWords(res.data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
-  // console.log('get all words: ', genAllWords());
+  const genAllWords = () => {
+    axios.get('/glossary')
+    .then((res) => {
+      console.log(res.data);
+      setWords(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  // generate initial list from database
+  useEffect(genAllWords, []);
+
 
   const search = (text) => {
     // axios get given text
+    axios.get('/glossary')
+    .then((res) => {
+      console.log(res.data);
+      setWords(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     // text through to get controller
     // adjust search criteria as needed
     // invoke findOne from model
@@ -42,8 +49,12 @@ const App = () => {
         name: text,
         def: def
     })
+    .then(() => {
+      // console.log('I got a response! ', res);
+      return axios.get('/glossary');
+    })
     .then((res) => {
-      console.log('I got a response! ', res);
+      setWords(res.data);
     })
     .catch((err) => {
       console.log(err);

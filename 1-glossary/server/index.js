@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const { getAll, save, remove } = require('./db.js');
+const glossary = require('./db.js');
 const convertToArray = require('../helpers/convertToArray.js');
 
 const app = express();
@@ -14,9 +14,27 @@ app.use('/glossary', express.json());
 app.get('/glossary', (req, res) => {
   // let words = getAll();
   // console.log(words);
+  if (req.body.length > 0) {
+    console.log('req body: ', req.body);
+  } else {
+    glossary.getAll((data) => {
+      // console.log('in controller: ', data);
+      res.status(200).send(data);
+    })
+  }
 
 
-  res.status(200).send(words);
+  // .then((res) => {
+
+  // })
+  // if (req.body === undefined) {
+  //   console.log('get all');
+  //   res.status(200).send(getAll);
+  // } else {
+
+  //   res.status(200).send(getOne);
+  // }
+
 
 
 });
@@ -24,7 +42,7 @@ app.get('/glossary', (req, res) => {
 app.post('/glossary', (req, res) => {
   convertToArray(req.body, (data) => {
     // save to db
-    save(data);
+    glossary.save(data);
     res.status(201).send('thanks for posting');
   })
 });

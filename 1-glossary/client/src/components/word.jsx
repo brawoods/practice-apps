@@ -3,7 +3,9 @@ import React from 'react';
 const Word = ({ word }) => {
 
   return (
-  <div>{word.name}</div>
+    <div>
+      <div>{word.name}: {word.def}</div>
+    </div>
   )
 }
 
