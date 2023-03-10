@@ -5,14 +5,11 @@ import {createPortal} from 'react-dom';
 import WordList from './wordList.jsx';
 import AddWord from './addWord.jsx';
 import Search from './search.jsx';
-import EditModal from './editModal.jsx';
-
 
 
 const App = () => {
   // test data - [{name:'test'}, {name:'text'}, {name:'goes'}, {name:'here'}]
   const [words, setWords] = useState([]);
-  const [editVisible, setEditVisible] = useState(false);
 
   // for useState on initialization
   const genAllWords = () => {
@@ -54,16 +51,9 @@ const App = () => {
     })
   }
 
-  const showEditModal = () => {
-    if (editVisible) {
-      setEditVisible(false);
-    } else {
-      setEditVisible(true);
-    }
-  }
   // pass through WordList to Word
-  const editWord = (word) => {
-    setEditVisible(false);
+  const editWord = (word, editName, editDef) => {
+     console.log(word, editName, editDef);
     // open pop up table or modify in place
     // take new data and enter PUT request
     // PUT request
@@ -97,12 +87,9 @@ const App = () => {
           <Search searchWord={search}/>
         </>
       </div>
-        {editVisible && createPortal(
-          <EditModal editWord={editWord} />,
-          document.getElementById("root")
-        )}
+        {/* {editVisible && <EditModal editWord={editWord} />} */}
       <div>
-        <WordList words={words} deleteWord={deleteWord} showEditModal={showEditModal}/>
+        <WordList words={words} deleteWord={deleteWord} editWord={editWord} />
       </div>
     </div>
   )
