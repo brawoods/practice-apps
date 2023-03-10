@@ -1,15 +1,16 @@
 import React from 'react';
 
-const Word = ({ word, deleteWord }) => {
+const Word = ({ word, deleteWord, showEditModal }) => {
 
-  let remove = () => {
+  const remove = () => {
     deleteWord(word);
   }
 
   return (
     <div>
-      <div>{word.name}: {word.def}</div>
-      <input type='button' value='Edit'></input>
+      <div>{word.name}</div>
+      <div>{word.def}</div>
+      <input type='button' value='Edit' onClick={showEditModal}></input>
       <input type='button' value='Delete' onClick={remove}></input>
     </div>
   )

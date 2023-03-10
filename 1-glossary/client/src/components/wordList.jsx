@@ -1,7 +1,7 @@
 import React from 'react';
 import Word from './word.jsx';
 
-const WordList = ({words, deleteWord}) => {
+const WordList = ({words, deleteWord, showEditModal}) => {
 
   return (
     <div>
@@ -9,7 +9,7 @@ const WordList = ({words, deleteWord}) => {
         <h3>Word List</h3>
       </>
       {words.map( word =>
-        <Word key={word.name} word={word} deleteWord={deleteWord}/>
+        <Word key={word.name} word={word} deleteWord={deleteWord} showEditModal={showEditModal}/>
       )}
     </div>
   )

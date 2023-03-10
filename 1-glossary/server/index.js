@@ -31,7 +31,10 @@ app.post('/glossary', (req, res) => {
 
 app.put('/glossary', (req, res) => {
   console.log('app.put touched');
-  res.status(200).send('I put it in the right place, I hope...');
+  // invoke model to edit
+  glossary.edit(/*word, update, */(data) => {
+    res.status(200).send(data);
+  })
 })
 
 app.delete('/glossary', (req, res) => {

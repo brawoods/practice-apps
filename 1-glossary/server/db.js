@@ -44,6 +44,13 @@ const save = (words) => {
   glossaryWord.create(words);
 }
 
+const edit = (word, update, cb) => {
+  glossaryWord.updateOne(word, update)
+  .then((res) => {
+    cb(res);
+  })
+}
+
 const remove = (word, cb) => {
   glossaryWord.deleteOne(word)
   .then((deleteCount) => {

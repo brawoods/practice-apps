@@ -14,8 +14,9 @@ const AddWord = ({postWord}) => {
   }
 
   const post = () => {
-    console.log('clicked it!')
     postWord(wordName, def);
+    setWordName('');
+    setDef('');
   }
 
   return (
