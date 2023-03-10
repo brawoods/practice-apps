@@ -1,6 +1,5 @@
 const axios = require('axios');
 import React from 'react';
-// import axios from 'axios';
 import {useState, useEffect} from 'react';
 import WordList from './wordList.jsx';
 import AddWord from './addWord.jsx';
@@ -14,7 +13,6 @@ const App = () => {
   const genAllWords = () => {
     axios.get('/glossary')
     .then((res) => {
-      console.log(res.data);
       setWords(res.data);
     })
     .catch((err) => {
@@ -25,32 +23,22 @@ const App = () => {
   // generate initial list from database
   useEffect(genAllWords, []);
 
-
   const search = (text) => {
-    // axios get given text
     axios.get('/glossary')
     .then((res) => {
-      console.log(res.data);
       setWords(res.data);
     })
     .catch((err) => {
       console.log(err);
     })
-    // text through to get controller
-    // adjust search criteria as needed
-    // invoke findOne from model
   }
 
   const postWord = (text, def) => {
-    // test post
-
-    // TODO change data before submitting
     axios.post('/glossary', {
         name: text,
         def: def
     })
     .then(() => {
-      // console.log('I got a response! ', res);
       return axios.get('/glossary');
     })
     .then((res) => {

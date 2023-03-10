@@ -33,7 +33,6 @@ const getOne = (wordName) => {
 const getAll = (cb) => {
   glossaryWord.find()
   .then((data) => {
-    // console.log('log data from model ', data);
     cb(data);
   })
   .catch((err) => {
@@ -42,7 +41,6 @@ const getAll = (cb) => {
 }
 
 const save = (words) => {
-  // console.log(words);
   glossaryWord.create(words);
 }
 
