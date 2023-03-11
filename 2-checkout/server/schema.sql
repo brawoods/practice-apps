@@ -11,20 +11,22 @@
 
   CREATE TABLE addresses (
     phoneNumber INT PRIMARY KEY,
-    FOREIGN KEY (user) REFERENCES users(id),
     addressLine1 VARCHAR(255) NOT NULL,
     addressLine2 VARCHAR(255),
     city VARCHAR(100) NOT NULL,
     state VARCHAR(30) NOT NULL,
-    zipCode INT NOT NULL
+    zipCode INT NOT NULL,
+    user INT NOT NULL,
+    FOREIGN KEY (user) REFERENCES users(id)
   );
 
   CREATE TABLE creditCardInfo (
     cardNumber INT NOT NULL PRIMARY KEY,
-    FOREIGN KEY (user) REFERENCES users(id),
     expDate DATE NOT NULL,
     cvv INT NOT NULL,
-    billingZipCode INT NOT NULL
+    billingZipCode INT NOT NULL,
+    user INT NOT NULL,
+    FOREIGN KEY (user) REFERENCES users(id)
   );
 
 
