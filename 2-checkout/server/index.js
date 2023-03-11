@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
+// try using routes
+const checkout = require('./checkoutController.js');
 
 // Establishes connection to the database on server start
 const db = require("./db");
@@ -15,17 +17,15 @@ app.use(sessionHandler);
 
 // Logs the time, session_id, method, and url of incoming requests.
 app.use(logger);
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-/**** 
- * 
- * 
- * Other routes here....
- *
- * 
- */
+// routes
+app.use('/checkout', checkout);
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

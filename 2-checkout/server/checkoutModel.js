@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const Promise = require("bluebird");
 const db = require('./db.js');
 
-const putUsers = (user, cb) => {
+const putUser = (user, cb) => {
   let q = `INSERT INTO users (username, email, password)
   VALUES (${user.username}, ${user.email}, ${user.password})`;
 
@@ -38,11 +38,11 @@ const putCredit = (user, credit, cb) => {
     ${userId})`;
 
   db.query(q)
-  .then((res) => cb(res))credit
+  .then((res) => cb(res))
   .catch((err) => {
     console.log(err);
     cb(err);
   });
 }
 
-module.exports = {putUsers, putCredit, putAddress};
+module.exports = {putUser, putCredit, putAddress};

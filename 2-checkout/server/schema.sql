@@ -20,7 +20,7 @@
     FOREIGN KEY (user) REFERENCES users(id)
   );
 
-  CREATE TABLE creditCardInfo (
+  CREATE TABLE creditCards (
     cardNumber INT NOT NULL PRIMARY KEY,
     expDate DATE NOT NULL,
     cvv INT NOT NULL,
