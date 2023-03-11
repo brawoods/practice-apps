@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import F1Form from './f1Form.jsx';
-import F2Form from './f2Form.jsx';
+import F1Form from './checkoutForms/f1Form.jsx';
+import F2Form from './checkoutForms/f2Form.jsx';
+import F3Form from './checkoutForms/f3Form.jsx';
 
 const App = () => {
   const [f1View, setF1View] = useState(true);
   const [f2View, setF2View] = useState(true);
+  const [f3View, setF3View] = useState(true);
 
   const textHandler = (value, handler) => {
     console.log(value);
@@ -18,7 +20,7 @@ const App = () => {
     <div>
       {f1View && <F1Form textHandler={textHandler}/>}
       {f2View && <F2Form textHandler={textHandler}/>}
-      {/* F3 form*/}
+      {f3View && <F3Form textHandler={textHandler}/>}
       {/* Confirmation form*/}
     </div>
   </div>
