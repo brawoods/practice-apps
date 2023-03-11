@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const F1Form = ({ textHandler }) => {
+const F1Form = ({ textHandler, handleNext }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,13 +16,13 @@ const F1Form = ({ textHandler }) => {
   }
 
   return (
-    <div>
+    <form>
       <h3>F1 Form</h3>
       name<input type='text' name='username' value={name} onChange={nameHandler}></input>
       email<input type='text' name='email' value={email} onChange={emailHandler}></input>
       password<input type='text' name='password' value={password} onChange={passwordHandler}></input>
-      <input type='button' name='user-submit' value='Next'></input>
-    </div>
+      <input type='button' name='user-submit' value='Next' onClick={handleNext}></input>
+    </form>
   )
 }
 
