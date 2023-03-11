@@ -17,9 +17,11 @@ const F1Form = ({ textHandler }) => {
 
   return (
     <div>
-      <input type='text' name='username' value={name} onChange={nameHandler}></input>
-      <input type='text' name='email' value={email} onChange={emailHandler}></input>
-      <input type='text' name='password' value={password} onChange={passwordHandler}></input>
+      <h3>F1 Form</h3>
+      name<input type='text' name='username' value={name} onChange={nameHandler}></input>
+      email<input type='text' name='email' value={email} onChange={emailHandler}></input>
+      password<input type='text' name='password' value={password} onChange={passwordHandler}></input>
+      <input type='button' name='user-submit' value='Next'></input>
     </div>
   )
 }
